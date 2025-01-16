@@ -1,13 +1,27 @@
 
 # CPNSuite
-
+---
 *CPNSuite is a cybersecurity/software-development POC written using Python and JSON as a storage solution. It is not intended to be used for illegitimate purposes and was created out of legitimate-interest.*
 
-Although the creation and/or use of CPNs (Credit Privacy Number) is not inherently illegal, it is certainly frowned upon and in its own grey area. This project was completed within a day, which is sort of laughable.
+This Python script serves as a simple tool for generating and validating Social Security Numbers (SSNs) and Credit Privacy Numbers (CPNs) based on state-specific area mappings. It utilizes various libraries, including colorama for colored terminal output, random for generating random numbers, and selenium for web scraping to validate the generated numbers.
 
-Many companies, especially found online, will offer these at exorbitant prices claiming them to offer free credit repair. This is untrue. CPNs can be legitimately used so long as you are **NOT** obfuscating the truth and dancing along the lines of fraud.
+---
 
-Crime is still crime. I intend to provide an interesting tool to add to my portfolio, exemplifying real-world application of programming knowledge within a cybersecurity-related space. I will be writing a Medium article fully-explaining the mechanisms behind this tool.
+<b>Key Concepts:</b>
+- Data Handling: <i>The script reads state-area mappings from a JSON file, allowing for dynamic SSN generation based on the specified state.</i>
+- Random Number Generation: <i>It generates random SSNs by combining area numbers, group numbers, and serial numbers.</i>
+- Web Scraping: <i>The script uses Selenium to check the validity of generated SSNs by scraping a verification website.</i>
+- Command-Line Interface: <i>It accepts command-line arguments for state and count, enhancing usability.<i>
+
+<b>Code Structure</b>
+
+The code is structured into several key components:
+
+- Imports: <i>Necessary libraries are imported at the beginning.</i>
+- Data Loading: <i>The script attempts to load state-area mappings from a JSON file.</i>
+- Functions: <i>Several functions are defined for specific tasks, including clearing the console, generating SSNs, and validating them.</i>
+- Main Execution: <i>The script's main logic is encapsulated in the main() function, which orchestrates the flow of the program</i>
+
 
 If you do so choose to abuse this application, refer to:
 - **18 U.S. Code § 1014**: Making false statements on a credit application is a crime.
@@ -54,8 +68,3 @@ I'm not a lawyer. I get the impression that it's in a grey-area. The banks clear
 To be continued. Thanks.
 
 -- daturadev
-
-
-
-
-
