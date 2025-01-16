@@ -6,7 +6,7 @@ import sys
 from colorama import Fore, Back, init
 import random
 import subprocess
-import undetected_chromedriver as uc
+import undetected_chromedriver as uc # Pain in the ass. Can We find a Cloudfare bypass?
 from selenium.webdriver.common.by import By
 import os
 import json
@@ -31,10 +31,18 @@ def clear_screen():
     subprocess.call(command, shell=True)
 
 # Display homescreen
+banner = """
+╔═╗╔═╗╔╗╔╔═╗╔═╗╔═╗
+╚═╗╚═╗║║║║ ║║ ║╠═╝
+╚═╝╚═╝╝╚╝╚═╝╚═╝╩  
+"""
 def home():
-    print(Back.BLUE, Fore.WHITE + "SSN Generator and Validator")
-    print(Fore.GREEN + "Usage: python main.py <state> <count>")
+    clear_screen()
+    print(Back.YELLOW + banner)
+    print(Back.BLUE + "The Simplest SSN/CPN Generator & Validator")
+    print(Fore.YELLOW + "Usage: python main.py <state> <count>")
     print(Fore.YELLOW + "Example: python main.py CA 10")
+    time.sleep(3)
 
 # Validate command-line arguments
 if len(sys.argv) != 3:
@@ -64,8 +72,8 @@ def check_ssn(ssn):
     time.sleep(random.randint(6, 11))
 
     try:
-        # Check for validity
-        result = driver.find_element(By.XPATH, "//div[@id='result']").text
+        # Check for validity - XPATH may need to be changed in the future
+        result = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div/div[2]/div/div/div[1]/table/tbody/tr[6]/td/span").text
     except Exception as e:
         result = f"Error fetching result: {e}"
     finally:
@@ -75,41 +83,41 @@ def check_ssn(ssn):
 
 # Main Function
 def main():
+    time.sleep(3)
+    clear_screen()
     results = []
     invalid_ssns = []
     print(Fore.YELLOW + "⚠️ Generating SSNs...\n")
-
+    time.sleep(4)
     if state in state_area_mapping:
         for _ in range(count):
             ssn = generate_ssn(state_area_mapping[state])
-            print(Fore.GREEN + f"Generated SSN: {ssn}")
+            print(Fore.GREEN + f"Generated SSN: {ssn}\n")
             ssnlist.append(ssn)
-            with open("SSNList.txt", "a") as file:
+            with open("SSNList.txt", "a+") as file:
                 file.write(ssn + "\n")
-
-        clear_screen()
-        print(Fore.GREEN + "✅ SSN list saved. Testing for validity...\n")
-        time.sleep(1.75)
+        time.sleep(3)
 
         for ssn in ssnlist:
             ssn, validity = check_ssn(ssn)
-            results.append((ssn, validity))
-            if "invalid" in validity.lower() or "not issued" in validity.lower():
-                print(Fore.GREEN + "✅ Usable CPN logged!\n")
-                invalid_ssns.append(ssn)
-            time.sleep(random.randint(3, 12))  # Sleep for WAF Bypass
+            results.append(ssn + "\n")
+            if "Not issued" in validity.lower() or "issued after" in validity.lower():
+                print(Fore.GREEN + f"✅ Valid CPN logged! - {ssn}\n")
+                invalid_ssns.append(ssn + "\n")
+                time.sleep(random.randint(3, 12))  # Sleep for WAF Bypass
+            else:
+                print(Fore.RED + "❌ Invalid CPN\n")
+                print(validity)
+                time.sleep(random.randint(3, 12))  # Sleep for WAF Bypass
 
         # Print and save results
-        for ssn, validity in results:
-            print(Fore.YELLOW + f"SSN: {ssn}, Validity: {validity}\n")
-
-        with open("scraped_cpns.txt", "w") as file:
+        with open("scraped_cpns.txt", "w+") as file:
             for ssn in invalid_ssns:
-                file.write(f"{ssn}\n")
+                file.write(f"✅ CPN: {ssn}\n")
     else:
         print(Fore.RED + "❌ Invalid state abbreviation.")
         home()
-        sys.exit()
+        exit()
 
 if __name__ == "__main__":
     home()
