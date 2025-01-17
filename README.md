@@ -1,7 +1,7 @@
 
-# CPNSuite
+# SSNope
 ---
-*CPNSuite is a cybersecurity/software-development POC written using Python and JSON as a storage solution. It is not intended to be used for illegitimate purposes and was created out of legitimate-interest.*
+*SSNope is a cybersecurity/software-development POC written using Python and JSON as a storage solution. It is not intended to be used for illegitimate purposes and was created out of legitimate-interest.*
 
 This Python script serves as a simple tool for generating and validating Social Security Numbers (SSNs) and Credit Privacy Numbers (CPNs) based on state-specific area mappings. It utilizes various libraries, including colorama for colored terminal output, random for generating random numbers, and selenium for web scraping to validate the generated numbers.
 
@@ -10,7 +10,7 @@ This Python script serves as a simple tool for generating and validating Social 
 <b>Key Concepts:</b>
 - Data Handling: <i>The script reads state-area mappings from a JSON file, allowing for dynamic SSN generation based on the specified state.</i>
 - Random Number Generation: <i>It generates random SSNs by combining area numbers, group numbers, and serial numbers.</i>
-- Web Scraping: <i>The script uses Selenium to check the validity of generated SSNs by scraping a verification website.</i>
+- Web Scraping: <i>The script uses Selenium to check for validity of generated SSNs by scraping a verification website's results.</i>
 - Command-Line Interface: <i>It accepts command-line arguments for state and count, enhancing usability.<i>
 
 <b>Code Structure</b>
@@ -64,6 +64,12 @@ CPN (Credit Privacy Numbers) are those valid social security numbers with no for
 
 I'm not a lawyer. I get the impression that it's in a grey-area. The banks clearly hate it. When searching for information, I made sure not to provide URLs to credit bureaus, who wouldn't specifically claim them to be illegal but used elaborate wording to effectively fear-monger. They do provide some effective alternatives to repairing your actual credit.
 
+---
+
+TODO:
+- Bypass Cloudfare and do away with the horrendous curse of Selenium automation
+
+---
 
 To be continued. Thanks.
 
