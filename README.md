@@ -22,8 +22,7 @@ The code is structured into several key components:
 - Functions: <i>Several functions are defined for specific tasks, including clearing the console, generating SSNs, and validating them.</i>
 - Main Execution: <i>The script's main logic is encapsulated in the main() function, which orchestrates the flow of the program</i>
 
-
-If you do so choose to abuse this application, refer to:
+Be aware:
 - **18 U.S. Code § 1014**: Making false statements on a credit application is a crime.
 - **Identity Theft**: If the number generated so happens to be a legitimate number (children, deceased individuals, prisoners, ...) this does legally qualify as identity theft if-utilized... This method, however, solely generates unused combinations.
 >("Scammers can also create fake SSNs that have not
@@ -33,8 +32,7 @@ If you do so choose to abuse this application, refer to:
 >which numbers could pose as SSNs.")
 > -- [crediful.com](https://www.crediful.com/credit-privacy-number-cpn/)
 
-I can't control the internet, but be smart.
-
+<i>Again, this program is intended for educational used as a PoC. Please treat it as such, examining how the code applies the concepts of CPNs and SSN structures to exploit an surprisingly simple system.</i>
 
 ---
 
